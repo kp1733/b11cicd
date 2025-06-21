@@ -12,12 +12,9 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-
-      - name: Show all files
-        run: ls -al
-
+            
       - name: Doing SSH to EC2
-        uses: appleboy/ssh-action@v1
+        uses: appleboy/scp-action@v1
         with:
           host: ${{ secrets.KP_SECRET_BLLCICD_IP }}
           username: ${{ secrets.EC2_USERNAME }}
@@ -26,18 +23,6 @@ jobs:
           script: |
             whoami
             pwd
-            ls -al
-            
-      - name: Doing SSH to EC2 
-        uses: appleboy/scp-action@v1
-        with: 
-          host: ${{ secrets.KP_SECRET_BLLCICD_IP }}
-          username: ${{ secrets.EC2_USERNAME }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          port: 22
-          script: |
-            who am i
-            pwd
-            ls-al
+            ls -a
           
         
